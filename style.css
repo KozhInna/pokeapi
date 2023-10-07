@@ -1,0 +1,82 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  background-image: url(img/background.jpg);
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 5rem;
+  height: 100vh;
+}
+h1 {
+  color: rgb(27, 27, 167);
+}
+h1,
+input {
+  margin-bottom: 1rem;
+}
+input {
+  padding: 5px;
+  min-width: 1rem;
+}
+
+.poke-image {
+  width: 100px;
+  height: 100px;
+  align-items: center;
+
+  padding-top: 10px;
+}
+
+.poke-card {
+  background-color: white;
+  filter: grayscale(90%);
+  text-align: center;
+}
+.container {
+  width: 100vw;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+
+  column-gap: 20px;
+  row-gap: 20px;
+}
+.poke-name {
+  color: white;
+  font-size: 14px;
+  padding: 10px;
+  background-color: rgb(59, 59, 156);
+}
+.poke-card:hover {
+  filter: brightness(100%);
+  filter: grayscale(0);
+}
+.features {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.feature {
+  font-size: 10px;
+  width: 100%;
+  padding: 3px;
+  color: azure;
+}
+.water {
+  background: #2c2652;
+}
+.poison {
+  background: #170c57;
+}
