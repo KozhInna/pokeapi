@@ -9,74 +9,110 @@ body {
   background-image: url(img/background.jpg);
   background-attachment: fixed;
   background-size: 100% 100%;
+  text-align: center;
+  margin: 5rem;
+  color: white;
 }
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding-top: 5rem;
-  height: 100vh;
-}
+
 h1 {
+  margin-bottom: 1rem;
   color: rgb(27, 27, 167);
 }
-h1,
 input {
-  margin-bottom: 1rem;
-}
-input {
-  padding: 5px;
-  min-width: 1rem;
+  padding: 0.5rem;
+
+  font-family: inherit;
+  font-size: inherit;
+  margin-bottom: 2rem;
 }
 
 .poke-image {
-  width: 100px;
-  height: 100px;
-  align-items: center;
+  width: 100%;
+  object-fit: contain;
+  height: 200px;
+  /* align-items: center; */
 
-  padding-top: 10px;
+  padding: 1rem;
 }
 
 .poke-card {
   background-color: white;
   filter: grayscale(90%);
   text-align: center;
+  position: relative;
+  border-radius: 5px;
 }
-.container {
-  width: 100vw;
-  padding: 20px;
-  display: grid;
+.pokedex {
+  max-width: 1200px;
+  display: none;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-
-  column-gap: 20px;
-  row-gap: 20px;
+  gap: 1rem;
+  margin: 0 auto;
 }
-.poke-name {
+.poke-name,
+.type {
   color: white;
   font-size: 14px;
   padding: 10px;
   background-color: rgb(59, 59, 156);
 }
+.type {
+  color: black;
+  background: rgb(59, 59, 156);
+}
 .poke-card:hover {
   filter: brightness(100%);
   filter: grayscale(0);
 }
+
+.pokedex div {
+  background-color: rgb(255, 255, 255);
+}
 .features {
   display: flex;
-  align-items: center;
-  justify-content: space-around;
 }
 .feature {
   font-size: 10px;
   width: 100%;
-  padding: 3px;
+  padding: 7px;
   color: azure;
-}
-.water {
-  background: #2c2652;
-}
-.poison {
+  /* position: relative; */
   background: #170c57;
+}
+
+.weight {
+  text-align: right;
+}
+.height {
+  text-align: left;
+}
+
+.id {
+  position: absolute;
+  background-color: black;
+  top: 0;
+  right: 0;
+  font-size: 0.5rem;
+  color: inherit;
+  padding: 10px 10px;
+  border-radius: 0 5px 0 12px;
+}
+
+@media (max-width: 900px) {
+  .pokedex {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 700px) {
+  .pokedex {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 500px) {
+  .pokedex {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+.type-img {
+  height: 30px;
 }
