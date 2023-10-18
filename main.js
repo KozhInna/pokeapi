@@ -7,9 +7,11 @@ const btn5 = document.querySelector(".btn5");
 const btn6 = document.querySelector(".btn6");
 const btn7 = document.querySelector(".btn7");
 const btn8 = document.querySelector(".btn8");
-const amountOfPokemons = document.querySelector(".amountOfPokemons");
 
-let pokeData = [1, 2, 3];
+const searchBar = document.querySelector("#searchBar");
+const textUnderGens = document.querySelector(".textUnderGens");
+
+let pokeData = [];
 ///////
 
 // const fetchData = async () => {
@@ -75,17 +77,27 @@ let pokeData = [1, 2, 3];
 
 //*******pokemons by generation
 
-/* const getGeneration = async function () {
-  const res = await fetch("https://pokeapi.co/api/v2/generation/8/");
-  const data = await res.json();
-};
- */
+/* const search = function () {
+  const name = query;
+  if (data2.name === name) {
+  }
+}; */
+
+searchBar.addEventListener("keyup", (e) => {
+  const searchQuery = e.target.value.toLowerCase();
+  const filteredQuery = pokeData.filter((item) => {
+    return item.name.toLowerCase().includes(searchQuery);
+  });
+
+  pokeCards(filteredQuery);
+});
 
 const fetchData = async (gen) => {
   const res = await fetch(`https://pokeapi.co/api/v2/generation/${gen}/`);
   const data = await res.json();
-  amountOfPokemons.textContent = `There are ${data.pokemon_species.length} pokemons in generation ${gen}`;
-  console.log(data.pokemon_species.length);
+
+  textUnderGens.textContent = `There are ${data.pokemon_species.length} pokemons in generation ${gen}`;
+  /* console.log(data.pokemon_species.length); */
 
   const fetches = data.pokemon_species.map(async function (item) {
     const res = await fetch(item.url);
@@ -106,13 +118,13 @@ const fetchData = async (gen) => {
   });
   Promise.all(fetches).then((res) => {
     pokeData = res;
-    console.log(res);
-    pokeCards();
-    /* console.log(data.id); */
+    /* console.log(pokeData); */
+    pokeCards(pokeData);
+    /* console.log(pokeData.type); */
   });
 };
 
-const pokeCards = () => {
+const pokeCards = (pokeData) => {
   const cards = pokeData
 
     .map((pokemon) => {
@@ -135,33 +147,41 @@ const pokeCards = () => {
 
 btn1.addEventListener("click", function () {
   fetchData(1);
+  searchBar.style.display = "inline-block";
   content.style.display = "grid";
 });
 btn2.addEventListener("click", function () {
   fetchData(2);
   content.style.display = "grid";
+  searchBar.style.display = "inline-block";
 });
 btn3.addEventListener("click", function () {
   fetchData(3);
   content.style.display = "grid";
+  searchBar.style.display = "inline-block";
 });
 btn4.addEventListener("click", function () {
   fetchData(4);
   content.style.display = "grid";
+  searchBar.style.display = "inline-block";
 });
 btn5.addEventListener("click", function () {
   fetchData(5);
   content.style.display = "grid";
+  searchBar.style.display = "inline-block";
 });
 btn6.addEventListener("click", function () {
   fetchData(6);
   content.style.display = "grid";
+  searchBar.style.display = "inline-block";
 });
 btn7.addEventListener("click", function () {
   fetchData(7);
   content.style.display = "grid";
+  searchBar.style.display = "inline-block";
 });
 btn8.addEventListener("click", function () {
   fetchData(8);
   content.style.display = "grid";
+  searchBar.style.display = "inline-block";
 });
