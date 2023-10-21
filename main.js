@@ -91,8 +91,12 @@ searchBar.addEventListener("keyup", (e) => {
   }); */
 
   const filteredQuery = pokeData.filter((item) => {
-    return item.types.forEach((item) => item.type.name.includes(searchQuery));
-    //item.name.toLowerCase().includes(searchQuery);
+    return (
+      item.types
+        .map((item) => item.type.name)
+        .join("")
+        .includes(searchQuery) || item.name.toLowerCase().includes(searchQuery)
+    );
   });
 
   pokeCards(filteredQuery);

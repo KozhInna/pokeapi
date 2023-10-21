@@ -166,13 +166,17 @@ input {
 }
 button {
   font-family: inherit;
-  font-size: inherit;
+  font-size: 2rem;
   padding: 7px 14px;
   border-radius: 5px;
   border: none;
   background-color: rgb(27, 115, 27);
   color: white;
   margin-bottom: 2rem;
+  margin-right: 1rem;
+}
+button.btn8 {
+  margin-right: 0;
 }
 .textUnderGens {
   font-size: 2rem;
