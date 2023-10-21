@@ -85,8 +85,14 @@ let pokeData = [];
 
 searchBar.addEventListener("keyup", (e) => {
   const searchQuery = e.target.value.toLowerCase();
+  /*   const filteredQuery = pokeData.filter((item) => {
+    return item.types[0].type.name.includes(searchQuery) ;
+    //item.name.toLowerCase().includes(searchQuery);
+  }); */
+
   const filteredQuery = pokeData.filter((item) => {
-    return item.name.toLowerCase().includes(searchQuery);
+    return item.types.forEach((item) => item.type.name.includes(searchQuery));
+    //item.name.toLowerCase().includes(searchQuery);
   });
 
   pokeCards(filteredQuery);
@@ -95,6 +101,8 @@ searchBar.addEventListener("keyup", (e) => {
 const fetchData = async (gen) => {
   const res = await fetch(`https://pokeapi.co/api/v2/generation/${gen}/`);
   const data = await res.json();
+
+  console.log(data);
 
   textUnderGens.textContent = `There are ${data.pokemon_species.length} pokemons in generation ${gen}`;
   /* console.log(data.pokemon_species.length); */
@@ -117,8 +125,10 @@ const fetchData = async (gen) => {
     };
   });
   Promise.all(fetches).then((res) => {
-    pokeData = res;
-    /* console.log(pokeData); */
+    pokeData = res.sort(function (a, b) {
+      return a.id - b.id;
+    });
+    console.log(pokeData);
     pokeCards(pokeData);
     /* console.log(pokeData.type); */
   });
@@ -136,8 +146,8 @@ const pokeCards = (pokeData) => {
     .map((item) => item.type.name)
     .join(", ")}</h2>
    <div class="features">
-     <p class="height feature">${pokemon.height} cm</p>
-     <p class="weight feature">${pokemon.weight} kg</p>
+     <p class="height feature">${pokemon.height * 10} cm</p>
+     <p class="weight feature">${pokemon.weight / 10} kg</p>
      </div>
      </div>`;
     })
@@ -149,39 +159,47 @@ btn1.addEventListener("click", function () {
   fetchData(1);
   searchBar.style.display = "inline-block";
   content.style.display = "grid";
+  searchBar.value = "";
 });
 btn2.addEventListener("click", function () {
   fetchData(2);
   content.style.display = "grid";
   searchBar.style.display = "inline-block";
+  searchBar.value = "";
 });
 btn3.addEventListener("click", function () {
   fetchData(3);
   content.style.display = "grid";
   searchBar.style.display = "inline-block";
+  searchBar.value = "";
 });
 btn4.addEventListener("click", function () {
   fetchData(4);
   content.style.display = "grid";
   searchBar.style.display = "inline-block";
+  searchBar.value = "";
 });
 btn5.addEventListener("click", function () {
   fetchData(5);
   content.style.display = "grid";
   searchBar.style.display = "inline-block";
+  searchBar.value = "";
 });
 btn6.addEventListener("click", function () {
   fetchData(6);
   content.style.display = "grid";
   searchBar.style.display = "inline-block";
+  searchBar.value = "";
 });
 btn7.addEventListener("click", function () {
   fetchData(7);
   content.style.display = "grid";
   searchBar.style.display = "inline-block";
+  searchBar.value = "";
 });
 btn8.addEventListener("click", function () {
   fetchData(8);
   content.style.display = "grid";
   searchBar.style.display = "inline-block";
+  searchBar.value = "";
 });
