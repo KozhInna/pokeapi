@@ -12,76 +12,6 @@ const searchBar = document.querySelector("#searchBar");
 const textUnderGens = document.querySelector(".textUnderGens");
 
 let pokeData = [];
-///////
-
-// const fetchData = async () => {
-//   await fetch("https://pokeapi.co/api/v2/pokemon?limit=121&offset=0")
-//     .then((response) => response.json())
-//     .then((data) => {
-//       console.log(data);
-//       const fetches = data.results.map((item) => {
-//         return fetch(item.url)
-//           .then((res) => res.json())
-//           .then((data) => {
-//             console.log(data);
-//             return {
-//               id: data.id,
-//               name: data.name,
-//               img: data.sprites.other["official-artwork"].front_default,
-//               types: data.types,
-//               height: data.height,
-//               weight: data.weight,
-//             };
-//           });
-//       });
-//       Promise.all(fetches).then((res) => {
-//         pokeData = res;
-//         /* console.log(res); */
-//         pokeCards();
-//         /* console.log(data.id); */
-//       });
-//     });
-// };
-
-// const pokeCards = () => {
-//   const cards = pokeData
-
-//     .map((pokemon) => {
-//       /*       function loadTypes() {
-//         let type = "";
-//         const types = pokemon.types.map((item) => item.type.name);
-//         console.log(types);
-//         for (let i = 0; i < types.length; i++) {
-//           type = `img/${types[i]}_type.ico`;
-//         }
-//       } */
-
-//       return `<div class="poke-card">
-//    <img class="poke-image" src="${pokemon.img}" />
-//    <p class="id">${pokemon.id}</p>
-//    <h2 class="poke-name">${pokemon.name}</h2>
-//   <h2 class="type">${pokemon.types
-//     .map((item) => item.type.name)
-//     .join(", ")}</h2>
-//    <div class="features">
-//      <p class="height feature">${pokemon.height} cm</p>
-//      <p class="weight feature">${pokemon.weight} kg</p>
-//      </div>
-//      </div>`;
-//     })
-//     .join("");
-//   content.innerHTML = cards;
-// };
-
-// fetchData();
-
-//*******pokemons by generation
-
-/* const search = function () {
-  const name = query;
-  if (data2.name === name) {
-  }
-}; */
 
 searchBar.addEventListener("keyup", (e) => {
   const searchQuery = e.target.value.toLowerCase();
@@ -105,8 +35,7 @@ searchBar.addEventListener("keyup", (e) => {
 const fetchData = async (gen) => {
   const res = await fetch(`https://pokeapi.co/api/v2/generation/${gen}/`);
   const data = await res.json();
-
-  console.log(data);
+  /* console.log(data); */
 
   textUnderGens.textContent = `There are ${data.pokemon_species.length} pokemons in generation ${gen}`;
   /* console.log(data.pokemon_species.length); */
@@ -139,6 +68,7 @@ const fetchData = async (gen) => {
 };
 
 const pokeCards = (pokeData) => {
+  const type = "grass";
   const cards = pokeData
 
     .map((pokemon) => {
@@ -146,9 +76,17 @@ const pokeCards = (pokeData) => {
    <img class="poke-image" src="${pokemon.img}" />
    <p class="id">${pokemon.id}</p>
    <h2 class="poke-name">${pokemon.name}</h2>
-  <h2 class="type">${pokemon.types
-    .map((item) => item.type.name)
-    .join(", ")}</h2>
+ <div class="type">
+    ${pokemon.types
+      .map(
+        (item) =>
+          `<img class="type-img" src="img/${item.type.name}_type.ico" />`
+      )
+      .join("")}
+      </div>
+      
+   
+    
    <div class="features">
      <p class="height feature">${pokemon.height * 10} cm</p>
      <p class="weight feature">${pokemon.weight / 10} kg</p>
@@ -159,51 +97,40 @@ const pokeCards = (pokeData) => {
   content.innerHTML = cards;
 };
 
-btn1.addEventListener("click", function () {
-  fetchData(1);
+function genActivation() {
   searchBar.style.display = "inline-block";
   content.style.display = "grid";
   searchBar.value = "";
+}
+btn1.addEventListener("click", function () {
+  fetchData(1);
+  genActivation();
 });
 btn2.addEventListener("click", function () {
   fetchData(2);
-  content.style.display = "grid";
-  searchBar.style.display = "inline-block";
-  searchBar.value = "";
+  genActivation();
 });
 btn3.addEventListener("click", function () {
   fetchData(3);
-  content.style.display = "grid";
-  searchBar.style.display = "inline-block";
-  searchBar.value = "";
+  genActivation();
 });
 btn4.addEventListener("click", function () {
   fetchData(4);
-  content.style.display = "grid";
-  searchBar.style.display = "inline-block";
-  searchBar.value = "";
+  genActivation();
 });
 btn5.addEventListener("click", function () {
   fetchData(5);
-  content.style.display = "grid";
-  searchBar.style.display = "inline-block";
-  searchBar.value = "";
+  genActivation();
 });
 btn6.addEventListener("click", function () {
   fetchData(6);
-  content.style.display = "grid";
-  searchBar.style.display = "inline-block";
-  searchBar.value = "";
+  genActivation();
 });
 btn7.addEventListener("click", function () {
   fetchData(7);
-  content.style.display = "grid";
-  searchBar.style.display = "inline-block";
-  searchBar.value = "";
+  genActivation();
 });
 btn8.addEventListener("click", function () {
   fetchData(8);
-  content.style.display = "grid";
-  searchBar.style.display = "inline-block";
-  searchBar.value = "";
+  genActivation();
 });
