@@ -15,10 +15,6 @@ let pokeData = [];
 
 searchBar.addEventListener("keyup", (e) => {
   const searchQuery = e.target.value.toLowerCase();
-  /*   const filteredQuery = pokeData.filter((item) => {
-    return item.types[0].type.name.includes(searchQuery) ;
-    //item.name.toLowerCase().includes(searchQuery);
-  }); */
 
   const filteredQuery = pokeData.filter((item) => {
     return (
@@ -35,19 +31,16 @@ searchBar.addEventListener("keyup", (e) => {
 const fetchData = async (gen) => {
   const res = await fetch(`https://pokeapi.co/api/v2/generation/${gen}/`);
   const data = await res.json();
-  /* console.log(data); */
 
   textUnderGens.textContent = `There are ${data.pokemon_species.length} pokemons in generation ${gen}`;
-  /* console.log(data.pokemon_species.length); */
 
   const fetches = data.pokemon_species.map(async function (item) {
     const res = await fetch(item.url);
     const data = await res.json();
-    /* console.log(data.id); */
 
     const res2 = await fetch(`https://pokeapi.co/api/v2/pokemon/${data.id}/`);
     const data2 = await res2.json();
-    /* console.log(data2); */
+
     return {
       id: data2.id,
       name: data2.name,
@@ -63,7 +56,6 @@ const fetchData = async (gen) => {
     });
     console.log(pokeData);
     pokeCards(pokeData);
-    /* console.log(pokeData.type); */
   });
 };
 
