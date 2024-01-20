@@ -21,13 +21,19 @@ h1 {
 }
 input {
   padding: 5px;
-  width: 25%;
+  width: 350px;
   font-family: inherit;
   font-size: inherit;
   margin-bottom: 2rem;
   display: none;
   border-radius: 5px;
   border: none;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .poke-image {
@@ -94,8 +100,9 @@ input {
   max-width: 1500px;
   display: none;
   grid-template-columns: repeat(6, 1fr);
-  gap: 1rem;
-  margin: 0 auto;
+  justify-items: center;
+  row-gap: 10px;
+  column-gap: 2%;
 }
 .poke-name {
   color: white;
@@ -142,21 +149,6 @@ input {
   border-radius: 0 5px 0 12px;
 }
 
-@media (max-width: 900px) {
-  .pokedex {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-@media (max-width: 700px) {
-  .pokedex {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (max-width: 500px) {
-  .pokedex {
-    grid-template-columns: repeat(1, 1fr);
-  }
-}
 .type-img {
   height: 30px;
 }
@@ -179,4 +171,46 @@ button.btn8 {
   color: #363432;
   font-weight: 700;
   margin-bottom: 5rem;
+}
+@media (max-width: 1440px) {
+  .pokedex {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+@media (max-width: 1200px) {
+  .pokedex {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (max-width: 980px) {
+  .pokedex {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 780px) {
+  .pokedex {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 500px) {
+  .pokedex {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  input {
+    width: 250px;
+    font-size: 12px;
+    text-align: center;
+  }
+  .gen-buttons {
+    width: 100vw;
+    justify-content: center;
+  }
+  button {
+    margin: 5px;
+  }
+  .textUnderGens {
+    font-size: 20px;
+    width: 100vw;
+    margin: 1.5rem;
+  }
 }
